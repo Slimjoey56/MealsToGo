@@ -72,7 +72,7 @@ def money(amount: float) -> str:
 
 
 def show_menu(restaurant: Restaurant) -> None:
-    print("\n🍽️  TODAY'S MENU")
+    print("\nTODAY'S MENU")
     print("-" * 43)
     for item_id, details in restaurant.menu.items():
         print(
@@ -84,10 +84,10 @@ def show_menu(restaurant: Restaurant) -> None:
 
 def show_cart(restaurant: Restaurant) -> None:
     if not restaurant.cart:
-        print("\n🧺 Your basket is empty. Add something delicious!")
+        print("\nYour basket is empty. Add something delicious!")
         return
 
-    print("\n🧺 YOUR BASKET")
+    print("\nYOUR BASKET")
     print("-" * 43)
     for item_id, quantity in restaurant.cart.items():
         item = restaurant.get_item(item_id)
@@ -120,17 +120,17 @@ def checkout(restaurant: Restaurant) -> None:
         return
 
     show_cart(restaurant)
-    print("\n🎉 ORDER CONFIRMED!")
+    print("\nORDER CONFIRMED!")
     print(f"Thank you for ordering from {restaurant.name}.")
     print(f"Your total is {money(restaurant.subtotal())}.")
-    print("Your food adventure starts now! 😋")
+    print("Your food adventure starts now!")
     restaurant.clear_cart()
 
 
 def run_app() -> None:
     restaurant = Restaurant("Meals To Go", MENU)
     print("\n" + "=" * 43)
-    print("       🍔 WELCOME TO MEALS TO GO 🍟")
+    print("       WELCOME TO MEALS TO GO")
     print("        Good food. Good mood.")
     print("=" * 43)
 
@@ -153,7 +153,7 @@ def run_app() -> None:
             quantity = read_quantity()
             if restaurant.add_to_cart(item_id, quantity):
                 item = restaurant.get_item(item_id)
-                print(f"✅ Added {quantity} x {item.name} to your basket!")
+                print(f"Added {quantity} x {item.name} to your basket!")
             else:
                 print("That menu number is not valid.")
         elif choice == "3":
@@ -163,13 +163,13 @@ def run_app() -> None:
             if restaurant.cart:
                 item_id = input("Enter the menu number to remove: ").strip()
                 if restaurant.remove_from_cart(item_id):
-                    print("🗑️ Item removed from your basket.")
+                    print("Item removed from your basket.")
                 else:
                     print("That item is not in your basket.")
         elif choice == "5":
             checkout(restaurant)
         elif choice == "0":
-            print("\nThanks for stopping by. Come hungry, leave happy! 👋")
+            print("\nThanks for stopping by. Come hungry, leave happy!")
             break
         else:
             print("Please choose one of the options shown.")
